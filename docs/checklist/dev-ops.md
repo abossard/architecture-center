@@ -1,10 +1,10 @@
 # DevOps Checklist
 
-DevOps is the integration of development, quality assurance, and IT operations into a unified culture and set of processes for delivering software. Use this checklist as a starting point to assess your DevOps culture and process.
+[DevOps][what-is-devops] is the integration of development, quality assurance, and IT operations into a unified culture and set of processes for delivering software. Use this checklist as a starting point to assess your DevOps culture and process.
 
 ## Culture
 
-**Ensure business alignment across organizations and teams.** Conflicts over resources, purpose, goals, and priorities within an organization can be a risk to successful operations. Ensure that the business, development, and operations teams are all aligned, so that a DevOps culture of collaboration and accountability can thrive.
+**Ensure business alignment across organizations and teams.** Conflicts over resources, purpose, goals, and priorities within an organization can be a risk to successful operations. Ensure that the business, development, and operations teams are all aligned.
 
 **Ensure the entire team understands the software lifecycle.** Your team needs to understand the overall lifecycle of the application, and which part of the lifecycle the application is currently in. This helps all team members to know what they should be doing now, and what they should be planning and preparing for in the future.
 
@@ -30,13 +30,13 @@ DevOps is the integration of development, quality assurance, and IT operations i
 
 **Ensure that all authorized team members can provision infrastructure and deploy the application.** Setting up production-like resources and deploying the application should not involve complicated manual tasks or detailed technical knowledge of the system. Anyone with the right permissions should be able to create or deploy production-like resources without going to the operations team. 
 
-> This item doesn't imply that anyone can push live updates to the prodution deployment. It's about reducing friction for developers and testers to create production-like environments.
+> This item doesn't imply that anyone can push live updates to the production deployment. It's about reducing friction for developers and testers to create production-like environments.
 
 **Instrument the application for insight.** To understand the health of your application, you need to know how it's performing and whether it's experiencing any errors or problems. Always include instrumentation as a design requirement, and build the instrumentation into the application from the start. Instrumentation must include event logging for root cause analysis, but also telemetry and metrics to monitor the overall health and usage of the application.
 
 **Track your technical debt.** In many projects, release schedules can get prioritized over code quality to one degree or another. Always keep track when this occurs. Document any shortcuts or other non-optimal implementations, and schedule time in the future to revisit these issues.
 
-**Consider pushing updates directly to production.** To reduce the overall release cycle time, consider pushing properly tested code commits directly to production. Use feature toggles to control which features are enabled. This allows you to move from development to release quickly, using the toggles to quickly enable or disable features. Toggles are also useful when performing tests such as canary releases, where a particular feature is deployed to a subset of the production environment.
+**Consider pushing updates directly to production.** To reduce the overall release cycle time, consider pushing properly tested code commits directly to production. Use [feature toggles][feature-toggles] to control which features are enabled. This allows you to move from development to release quickly, using the toggles to quickly enable or disable features. Toggles are also useful when performing tests such as [canary releases][canary-release], where a particular feature is deployed to a subset of the production environment.
 
 ## Testing
 
@@ -73,7 +73,7 @@ Continuous integration (CI) is the practice of merging all developer code into a
 
 **Control exposure to changes.** Make sure you're in control of when updates are visible to your end users. Consider using feature toggles to control when features are enabled for end users.
 
-**Implement release management strategies to reduce deployment risk.** Deploying an application update to production always entails some risk. To minimize this risk, use strategies such as canary releases or blue-green deployments, to deploy updates to a subset of users. Confirm the update works as expected, and then roll the update out to the rest of the system.
+**Implement release management strategies to reduce deployment risk.** Deploying an application update to production always entails some risk. To minimize this risk, use strategies such as [canary releases][canary-release] or [blue-green deployments][blue-green] to deploy updates to a subset of users. Confirm the update works as expected, and then roll the update out to the rest of the system.
 
 **Document all changes.** Minor updates and configuration changes can be a source of confusion and versioning conflict. Always keep a clear record of any changes, no matter how small. Log everything that changes, including patches applied, policy changes, and configuration changes.
 
@@ -85,13 +85,13 @@ Continuous integration (CI) is the practice of merging all developer code into a
 
 ## Monitoring
 
-**Make systems observable.** The operations team should always have clear visibility into the health and status of a system or service. Set up external health endpoints to monitor status, and ensure that applications are coded to instrument the operations metrics. Use a common and consistent schema that lets you correlate events across systems. Azure Diagnostics and Application Insights are the standard method of tracking the health and status of Azure resources. Microsoft Operation Management Suite also provides centralized monitoring and management for cloud or hybrid solutions.
+**Make systems observable.** The operations team should always have clear visibility into the health and status of a system or service. Set up external health endpoints to monitor status, and ensure that applications are coded to instrument the operations metrics. Use a common and consistent schema that lets you correlate events across systems. [Azure Diagnostics][azure-diagnostics] and [Application Insights][app-insights] are the standard method of tracking the health and status of Azure resources. Microsoft [Operation Management Suite][oms] also provides centralized monitoring and management for cloud or hybrid solutions.
 
 **Aggregate and correlate logs and metrics**. A properly instrumented telemetry system will provide a large amount of raw performance data and event logs. Make sure that telemetry and log data is processed and correlated in a short period of time, so that operations staff always have an up-to-date picture of system health. Organize and display data in ways that give a cohesive view of any issues, so that whenever possible it's clear when events are related to one another.
 
 > Consult your corporate retention policy for requirements on how data is processed and how long it should be stored. 
 
-**Implement automated alerts and notifications.** Set up monitoring tools like Azure Monitor to detect patterns or conditions that indicate potential or current issues, and send alerts to the team members who can address the issues. Tune the alerts to avoid false positives.
+**Implement automated alerts and notifications.** Set up monitoring tools like [Azure Monitor][azure-monitor] to detect patterns or conditions that indicate potential or current issues, and send alerts to the team members who can address the issues. Tune the alerts to avoid false positives.
 
 **Monitor assets and resources for expirations.** Some resources and assets, such as certificates, expire after a given amount of time. Make sure to track which assets expire, when they expire, and what services or features depend on them. Use automated processes to monitor these assets. Notify the operations team before an asset expires, and escalate if expiration threatens to disrupt the application.
 
@@ -99,13 +99,13 @@ Continuous integration (CI) is the practice of merging all developer code into a
 
 **Automate operations tasks.** Manually handling repetitive operations processes is error-prone. Automate these tasks whenever possible to ensure consistent execution and quality. Code that implements the automation should be versioned in source control. As with any other code, automation tools must be tested.
 
-**Take an "infrastructure as code" approach to provisioning.** Minimize the amount of manual configuration needed to provision resources. Instead, use scripts and Azure Resource Manager templates. Keep the scripts and templates in source control, like any other code you maintain. 
+**Take an "infrastructure as code" approach to provisioning.** Minimize the amount of manual configuration needed to provision resources. Instead, use scripts and [Azure Resource Manager][resource-manager] templates. Keep the scripts and templates in source control, like any other code you maintain. 
 
 **Consider using containers.** Containers provide a standard package-based interface for deploying applications. Using containers, an applications is deployed using self-contained packages that contain any software, dependencies, and files needed to run the application, which greatly simplifies the deployment process. 
 
 Containers also create an abstraction layer between the application and the underlying operating system, which provides consistency across environments. This abstraction can also isolate a container from other processes or  applications running on a host. 
 
-**Implement resiliency and self-healing.** Resiliency is the abilility of an application to recover from failures. Strategies for resiliency include retrying transient failures, and failing over to a secondary instance or even another region. For more information, see [Designing resilient applications for Azure][resiliency]. Instrument your applications so that issues are reported immediately and you can manage outages or other system failures.
+**Implement resiliency and self-healing.** Resiliency is the ability of an application to recover from failures. Strategies for resiliency include retrying transient failures, and failing over to a secondary instance or even another region. For more information, see [Designing resilient applications for Azure][resiliency]. Instrument your applications so that issues are reported immediately and you can manage outages or other system failures.
 
 **Have an operations manual.** An operations manual or *runbook* documents the procedures  and management information needed for operations staff to maintain a system. Also document any operations scenarios and mitigation plans that might come into play during a failure or other disruption to your service. Create this documentation during the development process, and keep it up to date afterwards. This is a living document, and should be reviewed, tested, and improved regularly. 
 
@@ -117,11 +117,11 @@ Shared documentation is critical. Encourage team members to contribute and share
 
 **Use configuration management.** Configuration changes should be planned, visible to operations, and recorded. This could take the form of a configuration management database, or a "configuration as code" approach. Configuration should be audited regularly to ensure that what's expected is actually in place.
 
-**Get an Azure support plan and understand the process.** Azure offers a number of support options. Decide on the right plan for your needs, and make sure the entire team knows how to use it. Team members should understand the details of the plan, how the support process works, and how to open a support ticket with Azure.
+**Get an Azure support plan and understand the process.** Azure offers a number of [support plans][azure-support-plans]. Decide on the right plan for your needs, and make sure the entire team knows how to use it. Team members should understand the details of the plan, how the support process works, and how to open a support ticket with Azure.
 
-**Follow least-privilege principles when granting access to resources.** Carefully manage access to resources. Access should be denied by default, unless a user is explicitly given access to a resource. Only grant a user access to what they need to complete their tasks. Track user permissions and perform regular security audits. <!-- link to RBAC -->
+**Follow least-privilege principles when granting access to resources.** Carefully manage access to resources. Access should be denied by default, unless a user is explicitly given access to a resource. Only grant a user access to what they need to complete their tasks. Track user permissions and perform regular security audits.
 
-**Automate access management.** Assigning user accounts and access to resources should not be a manual process. Use an identity and access management system like Azure Active Directory to centrally manage permissions and roles applied to resources and applications. 
+**Use role-based access control.** Assigning user accounts and access to resources should not be a manual process. Use [Role-Based Access Control][rbac] (RBAC) grant access based on [Azure Active Directory][azure-ad] identities and groups. 
 
 **Use a bug tracking system to track issues.** Without a good way to track issues, it's easy to miss items, duplicate work, or introduce additional problems. Don't rely on informal person-to-person communication to track the status of bugs. Use a bug tracking tool to record details about problems, assign resources to address them, and provide an audit trail of progress and status. 
 
@@ -131,6 +131,18 @@ Shared documentation is critical. Encourage team members to contribute and share
 
 <!-- links -->
 
+[app-insights]: /azure/application-insights/
+[azure-ad]: https://azure.microsoft.com/services/active-directory/
+[azure-diagnostics]: /azure/monitoring-and-diagnostics/azure-diagnostics
+[azure-monitor]: /azure/monitoring-and-diagnostics/monitoring-overview
+[azure-support-plans]: https://azure.microsoft.com/support/plans/
+[blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
+[canary-release]:https://martinfowler.com/bliki/CanaryRelease.html
 [dev-test]: https://azure.microsoft.com/solutions/dev-test/
+[feature-toggles]: https://www.martinfowler.com/articles/feature-toggles.html
+[oms]: https://www.microsoft.com/cloud-platform/operations-management-suite
+[rbac]: /azure/active-directory/role-based-access-control-what-is
 [resiliency]: ../resiliency/index.md
+[resource-manager]: /azure/azure-resource-manager/
 [trunk-based]: https://trunkbaseddevelopment.com/
+[what-is-devops]: https://www.visualstudio.com/learn/what-is-devops/
